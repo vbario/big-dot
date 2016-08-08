@@ -1,0 +1,428 @@
+/*Import frameworks*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  width: 100%;
+  *zoom: 1;
+}
+
+body:before, body:after {
+  content: "";
+  display: table;
+}
+
+body:after {
+  clear: both;
+}
+
+/*Theme Colors (SCSS)*/
+/*Theme Fonts (SCSS)*/
+*, *:before, *:after {
+  moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Roboto", sans serif;
+  font-size: 16px;
+  min-width: 320px;
+  min-height: 320px;
+}
+
+em {
+  font-style: italic;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1rem;
+  }
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: -22px;
+}
+
+@media (max-width: 480px) {
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+h4 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2em;
+}
+
+table {
+  display: inline-block;
+}
+
+th {
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0 10px;
+}
+
+td {
+  font-size: 1rem;
+  line-height: 1em;
+  text-align: center;
+  padding: 0 10px;
+}
+
+#level-span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50%;
+}
+
+#score-span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50%;
+}
+
+#canvas {
+  background-color: #fff;
+}
+
+#score-container {
+  position: relative;
+  display: inline-block;
+}
+
+#score-increment {
+  font-size: 1.25rem;
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+}
+
+div.bar {
+  height: 84px;
+  display: flex;
+}
+
+#logo {
+  height: 84px;
+  width: 50%;
+  display: inline-flex;
+  justify-content: space-around;
+  background: purple;
+}
+
+#game-info {
+  background: #bed;
+  height: 84px;
+  width: 50%;
+  min-width: 225px;
+  display: inline-flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stars {
+  font-size: 2rem;
+  line-height: 84px;
+  color: orange;
+}
+
+@media (max-width: 480px) {
+  .stars {
+    font-size: 1.5rem;
+  }
+}
+
+#myBtn {
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+}
+
+.fa-trophy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2.2rem;
+  opacity: 0.5;
+}
+
+.fa-undo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 2.2rem;
+  opacity: 0.5;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-message p {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.how-to-play {
+  margin-bottom: 10px;
+}
+
+th {
+  font-weight: 600;
+}
+
+/* Start Screen */
+.start-modal {
+  /*display: none;*/
+  /* Hidden by default */
+  position: absolute;
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  background-color: #18314f;
+}
+
+/* Modal Content */
+.start-modal-content {
+  margin: auto;
+  padding: 20px;
+  border: 0;
+  width: 80%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #e6f9af;
+}
+
+.start-modal-content .modal-message {
+  margin: 30px 0 40px;
+}
+
+.start-modal-content .modal-message p {
+  line-height: 1.6;
+}
+
+.start-title,
+.start-btn {
+  text-transform: uppercase;
+}
+
+.start-title {
+  font-size: 3rem;
+}
+
+.start-btn {
+  display: inline-block;
+  border: 2px solid transparent;
+  padding: 10px 15px;
+  background-color: #18314f;
+  color: #e6f9af;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.75rem;
+  text-decoration: none;
+  transition: border 0.25s;
+}
+
+.start-btn:hover {
+  border: 2px solid #e6f9af;
+  cursor: pointer;
+}
+
+.start-btn:active {
+  border: 2px solid #e6f9af;
+  background-color: #e6f9af;
+  color: #18314f !important;
+}
+
+.start-btn:focus {
+  outline: #384e77 solid 2px;
+}
+
+.ball {
+  border-radius: 50%;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  background-color: #e6f9af;
+  margin-bottom: 30px;
+}
+
+.stars-block {
+  font-size: 2rem;
+  line-height: 84px;
+}
+
+#canvas-overlay {
+  background: #333;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: calc(100vh - 90px);
+  display: none;
+}
+
+@media screen and (max-width: 524px) {
+  .start-modal-content {
+    width: 90%;
+    padding: 0;
+  }
+  .start-modal-content .modal-message {
+    margin: 15px 0;
+  }
+  .start-modal-content .modal-message p {
+    font-size: 0.95rem;
+  }
+  .start-title {
+    font-size: 2.25rem;
+  }
+  .start-btn {
+    font-size: 1.325rem;
+  }
+  .ball {
+    height: 75px;
+    width: 75px;
+    margin-bottom: 15px;
+  }
+  .stars-block {
+    font-size: 1.5rem;
+    line-height: 56px;
+  }
+}
+
+/* TOOLS */
+/*CLEARFIX*/
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+/*CENTER TEXT*/
+.center-text {
+  text-align: center;
+}

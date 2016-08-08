@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+		<meta name="keywords" content="Big Dot, Tap, Click, Game, Dot, Ball, Shrink, Bounce, Reflex, Reaction Time, Reaction, Speed Processing, Speed, Skill">
+		<meta name="description" content="A simple target game that tests reaction time">
+		<meta name="author" content="Vladimir Baranov, Daniel Pierre">
+		<meta property="og:title" content="The Big Dot Game">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="http://bigdot.io"><!-- INSERT URL -->
+		<meta property="og:image" content="http://bigdot.io/images/ball-logo.png"><!-- INSERL URL -->
+		<meta property="og:site_name" content="Big Dot">
+		<meta property="og:description" content="A simple target game that tests reaction time">
+
+		<title>Big Dot</title>
+
+		<!-- FONT AWESOME -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<!-- BAR ICON -->
+		<link rel="icon" type="image/png" href="images/ball-logo.png">
+
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+
+		<!-- CSS STYLESHEETS -->
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<canvas id="canvas"></canvas>
+				<div id="canvas-overlay">
+					
+				</div>
+				<!-- /#canvas -->
+			<div class="bar clearfix">
+				<div id="logo"><!-- RENAME - MORE SEMANTIC -->
+					<i class="fa fa-star stars" aria-hidden="true"></i>
+					<i class="fa fa-star stars" aria-hidden="true"></i>
+					<i class="fa fa-star stars" aria-hidden="true"></i>
+				</div><!-- /#logo -->
+				<div id="game-info">
+					<span id="level-span">
+						<h2>
+							LEVEL
+						</h2>
+						<h3 id="level">
+							1
+						</h3>
+					</span><!-- /#level-span -->
+					<span id="score-span">
+						<h2>
+							SCORE
+						</h2>
+						<h3 id="score">
+							<div id="score-container">
+								<span id="current-score">0</span>
+								<span id="score-increment"></span>
+							</div><!-- /.score-container -->
+						</h3>
+					</span><!-- /#score-span -->
+				</div><!-- /#game-info -->
+			</div><!-- /.bar.clearfix -->
+		</div><!-- /.wrapper -->
+
+		<!-- High Scores Button -->
+		<i class="fa fa-trophy" aria-hidden="true" id="highScoresButton"></i>
+
+		<!-- Restart Button -->
+		<i class="fa fa-undo" aria-hidden="true" id="restartButton"></i>
+
+		<!-- *** ADDITION START *** -->
+
+		<!-- UNUSED -->
+		<!-- Trigger/Open The Modal -->
+		<!-- <button id="myBtn">Open Modal</button> -->
+
+		<!--  *** ADDITION END ***  -->
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+				<div class="modal-content-box">
+					<h4 class="modal-title">
+						Title!
+					</h4>
+					<div class="modal-message">
+					<!-- UNUSED CLASS: "modal-message-text" -->
+						<p class="modal-content-text">Some text in the Modal..</p>
+					</div><!-- /.modal-message -->
+				</div><!-- /.modal-content-box -->
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+
+		<!-- Start Modal -->
+		<div id="startModal" class="start-modal">
+			<!-- Modal content -->
+			<div class="start-modal-content">
+				<div class="modal-content-box">
+					<h1 class="start-title">Big Dot</h1>
+					<div class="modal-message">
+						<div class="ball"></div><!-- /.ball -->
+						<p>
+							Touch the big dot to score points.<br>
+							Don't miss to score <em>more</em> points.<br>
+						</p>
+						<div class="stars-block">
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</div>
+						<p>
+							Miss four times in a row and it's game over...<br>
+							How many points can you score?
+						</p>
+					</div><!-- /.modal-message -->
+					<button id="startBtn" class="start-btn">Start Game</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- GOOGLE ANALYTICSS -->
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-63117635-4', 'auto');
+			  ga('send', 'pageview');
+		</script>
+
+		<!-- FIREBASE -->
+		<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>   
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+		<script src="js/firebase_config.js"></script>
+
+		<!-- Game scripts -->
+		<script src="js/ball-motion.js"></script>
+	</body>
+</html>
